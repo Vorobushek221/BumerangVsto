@@ -14,6 +14,7 @@ namespace BumerangVsto.Business
         {
 
 
+
         }
 
         public void ConvertByrToByn(Excel.Range selection)
