@@ -13,6 +13,7 @@ namespace BumerangVsto.Business
         public ExcelProcessor()
         {
 
+
         }
 
         public void ConvertByrToByn(Excel.Range selection)
