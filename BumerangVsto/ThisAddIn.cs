@@ -8,6 +8,7 @@ using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
 using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
+using BumerangVsto.Business;
 
 namespace BumerangVsto
 {
@@ -23,67 +24,19 @@ namespace BumerangVsto
 
         protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
-            var ribbon = new SampleRibbon();
-            ribbon.ButtonClicked += ribbon_ButtonClicked;
+
+
+            var ribbon = new MainRibbon();
+            //ribbon.CreateTagsButClicked += ribbon_ButtonClicked;
+
+            ribbon.ByrToBynButClicked += ConvertByrToByn;
             return Globals.Factory.GetRibbonFactory().CreateRibbonManager(new IRibbonExtension[] { ribbon });
         }
 
-        private void ribbon_ButtonClicked()
+        private void ConvertByrToByn()
         {
-            GenerateTable(Application.ActiveWorkbook.ActiveSheet, 1, 1);
+            new ExcelProcessor().ConvertByrToByn(Globals.ThisAddIn.Application.Selection);
         }
-
-        private void GenerateTable(dynamic wSheet, int row, int column)
-        {
-            var currentMonth = GetDaysOfCurrentMonth().ToArray();
-            for (int i = 0; i < currentMonth.Length; i++)
-            {
-                wSheet.Cells[row, column + i] = currentMonth[i].Day;
-                MarkCell(wSheet.Cells[row, column + i], currentMonth[i]);
-            }
-        }
-
-        public static void MarkBold(dynamic border)
-        {
-            border.Weight = Office.XlBorderWeight.xlMedium;
-        }
-
-        public enum Border
-        {
-            Left = 1,
-            Right = 2,
-            Top = 3,
-            Bottom = 4
-        }
-
-        private void MarkCell(dynamic cell, DateTime day)
-        {
-            if (day.DayOfWeek == DayOfWeek.Saturday)
-            {
-                MarkBold(cell.Borders[Border.Left]);
-                MarkBold(cell.Borders[Border.Top]);
-                MarkBold(cell.Borders[Border.Bottom]);
-            }
-            if (day.DayOfWeek == DayOfWeek.Sunday)
-            {
-                MarkBold(cell.Borders[Border.Right]);
-                MarkBold(cell.Borders[Border.Top]);
-                MarkBold(cell.Borders[Border.Bottom]);
-            }
-            cell.Columns[1].ColumnWidth = 4;
-        }
-
-        private static IEnumerable<DateTime> GetDaysOfCurrentMonth()
-        {
-            var today = DateTime.Today;
-            var dayIter = new DateTime(today.Year, today.Month, 1);
-            while (dayIter.Month == today.Month)
-            {
-                yield return dayIter;
-                dayIter = dayIter.AddDays(1);
-            }
-        }
-
 
 
         #region Код, автоматически созданный VSTO
