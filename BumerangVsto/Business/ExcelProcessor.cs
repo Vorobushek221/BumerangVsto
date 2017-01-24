@@ -12,23 +12,31 @@ namespace BumerangVsto.Business
     {
         public ExcelProcessor()
         {
-
-
-
         }
 
-        public void ConvertByrToByn(Excel.Range selection)
+        private void ApplyConvertionToRange(Excel.Range selection, Func<string, string> Method)
         {
-            var converter = new CurrencyConverter();
             foreach (Excel.Range cell in selection.Cells)
             {
                 if (cell.Value != null)
                 {
                     string value = cell.Value.ToString();
                     cell.NumberFormat = "@";
-                    cell.Value = (string)converter.ByrToByn(value);
+                    cell.Value = (string)Method(value);
                 }
             }
+        }
+
+        public void ConvertBynToByr(Excel.Range selection)
+        {
+            Func<string, string> convertionMethod = new CurrencyConverter().ConvetrBynToByr;
+            ApplyConvertionToRange(selection, convertionMethod);
+        }
+
+        public void ConvertByrToByn(Excel.Range selection)
+        {
+            Func<string, string> convertionMethod = new CurrencyConverter().ConvetrByrToByn;
+            ApplyConvertionToRange(selection, convertionMethod);
         }
     }
 }

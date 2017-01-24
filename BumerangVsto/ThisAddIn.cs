@@ -24,18 +24,21 @@ namespace BumerangVsto
 
         protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
-
-
             var ribbon = new MainRibbon();
-            //ribbon.CreateTagsButClicked += ribbon_ButtonClicked;
-
             ribbon.ByrToBynButClicked += ConvertByrToByn;
+            ribbon.BynToByrButClicked += ConvertBynToByr;
+
             return Globals.Factory.GetRibbonFactory().CreateRibbonManager(new IRibbonExtension[] { ribbon });
         }
 
         private void ConvertByrToByn()
         {
             new ExcelProcessor().ConvertByrToByn(Globals.ThisAddIn.Application.Selection);
+        }
+
+        private void ConvertBynToByr()
+        {
+            new ExcelProcessor().ConvertBynToByr(Globals.ThisAddIn.Application.Selection);
         }
 
 

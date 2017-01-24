@@ -10,32 +10,74 @@ namespace TestProject.BusinessTest
         CurrencyConverter obj = new CurrencyConverter();
 
         [TestMethod]
-        public void ByrToBynTest()
+        public void ConvetrByrToBynTest()
         {
             string byrStr = "16000";
             string bynStr = "1.60";
-            string result = obj.ByrToByn(byrStr);
+            string result = obj.ConvetrByrToByn(byrStr);
             Assert.AreEqual(bynStr, result);
 
             byrStr = "100";
             bynStr = "0.01";
-            result = obj.ByrToByn(byrStr);
+            result = obj.ConvetrByrToByn(byrStr);
             Assert.AreEqual(bynStr, result);
 
             byrStr = "100";
             bynStr = "0.01";
-            result = obj.ByrToByn(byrStr);
+            result = obj.ConvetrByrToByn(byrStr);
             Assert.AreEqual(bynStr, result);
 
             byrStr = "10000";
             bynStr = "1.00";
-            result = obj.ByrToByn(byrStr);
+            result = obj.ConvetrByrToByn(byrStr);
             Assert.AreEqual(bynStr, result);
 
             byrStr = "999900000";
             bynStr = "99990.00";
-            result = obj.ByrToByn(byrStr);
+            result = obj.ConvetrByrToByn(byrStr);
+            Assert.AreEqual(bynStr, result);
+
+            byrStr = "0";
+            bynStr = "0.00";
+            result = obj.ConvetrByrToByn(byrStr);
             Assert.AreEqual(bynStr, result);
         }
+
+        [TestMethod]
+        public void ConvetrBynToByrTest()
+        {
+            string byrStr = "16000";
+            string bynStr = "1.60";
+            string result = obj.ConvetrBynToByr(bynStr);
+            Assert.AreEqual(byrStr, result);
+
+            byrStr = "100";
+            bynStr = "0.01";
+            result = obj.ConvetrBynToByr(bynStr);
+            Assert.AreEqual(byrStr, result);
+
+            byrStr = "100";
+            bynStr = "0.01";
+            result = obj.ConvetrBynToByr(bynStr);
+            Assert.AreEqual(byrStr, result);
+
+            byrStr = "10000";
+            bynStr = "1.00";
+            result = obj.ConvetrBynToByr(bynStr);
+            Assert.AreEqual(byrStr, result);
+
+            byrStr = "999900000";
+            bynStr = "99990.00";
+            result = obj.ConvetrBynToByr(bynStr);
+            Assert.AreEqual(byrStr, result);
+
+            byrStr = "0";
+            bynStr = "0.00";
+            result = obj.ConvetrBynToByr(bynStr);
+            Assert.AreEqual(byrStr, result);
+        }
+
+
+
     }
 }

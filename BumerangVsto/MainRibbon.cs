@@ -12,6 +12,8 @@ namespace BumerangVsto
 
         public event Action ByrToBynButClicked;
 
+        public event Action BynToByrButClicked;
+
         private void MainRibbon_Load(object sender, RibbonUIEventArgs e)
         {
         }
@@ -25,6 +27,11 @@ namespace BumerangVsto
         private void byrToBynBut_Click(object sender, RibbonControlEventArgs e)
         {
             ByrToBynButClicked?.Invoke();
+        }
+
+        private void bynToByrBut_Click(object sender, RibbonControlEventArgs e)
+        {
+            BynToByrButClicked?.Invoke();
         }
     }
 }

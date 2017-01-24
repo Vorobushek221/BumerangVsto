@@ -38,6 +38,7 @@
             this.bumerangVstoGroup = this.Factory.CreateRibbonGroup();
             this.createTagsBut = this.Factory.CreateRibbonButton();
             this.byrToBynBut = this.Factory.CreateRibbonButton();
+            this.bynToByrBut = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.bumerangVstoGroup.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +53,7 @@
             // bumerangVstoGroup
             // 
             this.bumerangVstoGroup.Items.Add(this.byrToBynBut);
+            this.bumerangVstoGroup.Items.Add(this.bynToByrBut);
             this.bumerangVstoGroup.Items.Add(this.createTagsBut);
             this.bumerangVstoGroup.Label = "Bumerang VSTO";
             this.bumerangVstoGroup.Name = "bumerangVstoGroup";
@@ -66,7 +68,15 @@
             // 
             this.byrToBynBut.Label = "BYR -> BYN";
             this.byrToBynBut.Name = "byrToBynBut";
+            this.byrToBynBut.ShowImage = true;
             this.byrToBynBut.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.byrToBynBut_Click);
+            // 
+            // bynToByrBut
+            // 
+            this.bynToByrBut.Label = "BYN -> BYR";
+            this.bynToByrBut.Name = "bynToByrBut";
+            this.bynToByrBut.ShowImage = true;
+            this.bynToByrBut.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bynToByrBut_Click);
             // 
             // MainRibbon
             // 
@@ -88,6 +98,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup bumerangVstoGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton createTagsBut;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton byrToBynBut;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton bynToByrBut;
     }
 
     partial class ThisRibbonCollection
