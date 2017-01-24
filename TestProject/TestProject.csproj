@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BusinessTest\CurrencyConvertetTest.cs" />
+    <Compile Include="ModelTest\PriceTagListTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

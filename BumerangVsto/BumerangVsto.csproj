@@ -160,7 +160,10 @@
     <Compile Include="MainRibbon.Designer.cs">
       <DependentUpon>MainRibbon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Label.cs" />
     <Compile Include="Model\PriceTag.cs" />
+    <Compile Include="Model\PriceTagList.cs" />
+    <Compile Include="Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

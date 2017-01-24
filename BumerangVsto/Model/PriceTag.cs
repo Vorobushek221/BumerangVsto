@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace BumerangVsto.Model
 {
-    class PriceTag
+    public class PriceTag
     {
-        public int Id { get; set; }
-
         public string Description { get; set; }
 
         public string Price { get; set; }
@@ -22,17 +20,15 @@ namespace BumerangVsto.Model
 
         public PriceTag()
         {
-            Id = -1;
-            Description = "";
-            Price = "";
-            Provider = "";
-            Number = "";
-            Date = "";
+            Description = string.Empty;
+            Price = string.Empty;
+            Provider = string.Empty;
+            Number = string.Empty;
+            Date = string.Empty;
         }
 
         public PriceTag(string description, string price, string provider, string number, string date)
         {
-            Id = -1;
             Description = description;
             Price = price;
             Provider = provider;

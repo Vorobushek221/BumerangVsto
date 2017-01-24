@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BumerangVsto.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,12 @@ namespace BumerangVsto.Business
                 if (cell.Value != null)
                 {
                     string value = cell.Value.ToString();
-                    cell.NumberFormat = "@";
-                    cell.Value = (string)Method(value);
+                    string result = (string)Method(value);
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        cell.Value = result;
+                        cell.NumberFormat = "@";
+                    }
                 }
             }
         }
@@ -37,6 +42,11 @@ namespace BumerangVsto.Business
         {
             Func<string, string> convertionMethod = new CurrencyConverter().ConvetrByrToByn;
             ApplyConvertionToRange(selection, convertionMethod);
+        }
+
+        public List<PriceTag> ParseProductData(Excel.Range selection) // поменять для Product
+        {
+            return null;
         }
     }
 }
