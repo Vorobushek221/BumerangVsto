@@ -27,6 +27,7 @@ namespace BumerangVsto
             var ribbon = new MainRibbon();
             ribbon.ByrToBynButClicked += ConvertByrToByn;
             ribbon.BynToByrButClicked += ConvertBynToByr;
+            ribbon.CreateTagsButClicked += ParseRegisterInfo;
 
             return Globals.Factory.GetRibbonFactory().CreateRibbonManager(new IRibbonExtension[] { ribbon });
         }
@@ -39,6 +40,11 @@ namespace BumerangVsto
         private void ConvertBynToByr()
         {
             new ExcelProcessor().ConvertBynToByr(Globals.ThisAddIn.Application.Selection);
+        }
+
+        private void ParseRegisterInfo()
+        {
+            new ExcelProcessor().ParseRegisterData(Globals.ThisAddIn.Application.ActiveSheet);
         }
 
 

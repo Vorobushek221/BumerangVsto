@@ -36,9 +36,9 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.bumerangVstoGroup = this.Factory.CreateRibbonGroup();
-            this.createTagsBut = this.Factory.CreateRibbonButton();
             this.byrToBynBut = this.Factory.CreateRibbonButton();
             this.bynToByrBut = this.Factory.CreateRibbonButton();
+            this.createTagsBut = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.bumerangVstoGroup.SuspendLayout();
             this.SuspendLayout();
@@ -58,12 +58,6 @@
             this.bumerangVstoGroup.Label = "Bumerang VSTO";
             this.bumerangVstoGroup.Name = "bumerangVstoGroup";
             // 
-            // createTagsBut
-            // 
-            this.createTagsBut.Label = "Сформировать ценники";
-            this.createTagsBut.Name = "createTagsBut";
-            this.createTagsBut.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.createTagsBut_Click);
-            // 
             // byrToBynBut
             // 
             this.byrToBynBut.Label = "BYR -> BYN";
@@ -77,6 +71,12 @@
             this.bynToByrBut.Name = "bynToByrBut";
             this.bynToByrBut.ShowImage = true;
             this.bynToByrBut.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bynToByrBut_Click);
+            // 
+            // createTagsBut
+            // 
+            this.createTagsBut.Label = "Сформировать ценники";
+            this.createTagsBut.Name = "createTagsBut";
+            this.createTagsBut.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.createTagsBut_Click);
             // 
             // MainRibbon
             // 
