@@ -9,13 +9,17 @@ using Microsoft.Office.Tools.Excel;
 using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
 using BumerangVsto.Business;
+using BumerangVsto.Model;
 
 namespace BumerangVsto
 {
     public partial class ThisAddIn
     {
+        public ExcelProcessor excelProcessor;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            excelProcessor = new ExcelProcessor(Globals.ThisAddIn.Application);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
@@ -34,17 +38,17 @@ namespace BumerangVsto
 
         private void ConvertByrToByn()
         {
-            new ExcelProcessor().ConvertByrToByn(Globals.ThisAddIn.Application.Selection);
+            excelProcessor.ConvertByrToByn(Globals.ThisAddIn.Application.Selection);
         }
 
         private void ConvertBynToByr()
         {
-            new ExcelProcessor().ConvertBynToByr(Globals.ThisAddIn.Application.Selection);
+            excelProcessor.ConvertBynToByr(Globals.ThisAddIn.Application.Selection);
         }
 
         private void ParseRegisterInfo()
         {
-            new ExcelProcessor().ParseRegisterData(Globals.ThisAddIn.Application.ActiveSheet);
+            excelProcessor.DoSomeWork();
         }
 
 

@@ -1,10 +1,13 @@
 ﻿using BumerangVsto.Extensions;
 using BumerangVsto.Model;
+using BumerangVsto.Model.Global;
 using BumerangVsto.Model.Money;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +17,11 @@ namespace BumerangVsto.Business
 {
     public class ExcelProcessor
     {
+        private Excel.Application excelApp;
 
-        public ExcelProcessor()
+        public ExcelProcessor(Excel.Application app)
         {
+            excelApp = app;
         }
 
         private void ApplyConvertionToRange(Excel.Range selection, Func<string, string> Method)
@@ -54,11 +59,11 @@ namespace BumerangVsto.Business
 
             #region RegisterNumber parsing
             var registerNumber = activeWorksheet.GetValue("C5");
-            
+
             if (!(string.IsNullOrEmpty(registerNumber) || string.IsNullOrWhiteSpace(registerNumber)))
             {
                 int registerNumberParsed = 0;
-                if(int.TryParse(registerNumber, out registerNumberParsed))
+                if (int.TryParse(registerNumber, out registerNumberParsed))
                 {
                     register.RegisterNumber = registerNumberParsed;
                     Logger.AddInfo("Номер реестра успешно распознан!");
@@ -266,7 +271,7 @@ namespace BumerangVsto.Business
                 if (!(string.IsNullOrEmpty(sellingPrice) || string.IsNullOrWhiteSpace(sellingPrice)))
                 {
                     var sellingPriiceObject = Byn.GetInstance(sellingPrice);
-                    if(sellingPriiceObject != null)
+                    if (sellingPriiceObject != null)
                     {
                         product.SellingPrice = sellingPriiceObject;
                         Logger.AddError("Отпускная цена товара " + productNumber + " успешно распознана!");
@@ -417,5 +422,29 @@ namespace BumerangVsto.Business
 
             return register;
         }
+
+        public void DoSomeWork()
+        {
+            AddTemplateWorksheet(TemplateType.Tags3);
+        }
+
+        private Excel.Workbook OpenTemplatesFile(string path)
+        {
+            var workbook = excelApp.Workbooks.Open(path);
+            excelApp.Workbooks["Templates"].Windows[1].Visible = true;
+            return workbook;
+        }
+
+        private void AddTemplateWorksheet(TemplateType templateType)
+        {
+            Excel.Workbook templatesWorkbook = OpenTemplatesFile(Constants.PathToTemplates);
+
+            Excel.Worksheet templateWorksheet = templatesWorkbook.Worksheets[templateType.ToString()];
+
+            templateWorksheet.Copy(After: (Excel.Worksheet)excelApp.Workbooks[1].Worksheets[1]); // to the end  better
+
+            templatesWorkbook.Close(SaveChanges: false);
+        }
+
     }
 }
