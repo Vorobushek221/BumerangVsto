@@ -154,7 +154,7 @@
   <ItemGroup>
     <Compile Include="Business\CurrencyConverter.cs" />
     <Compile Include="Business\ExcelProcessor.cs" />
-    <Compile Include="Business\TemplateType.cs" />
+    <Compile Include="Model\TemplateType.cs" />
     <Compile Include="Extensions\WorksheetExtension.cs" />
     <Compile Include="MainRibbon.cs">
       <SubType>Component</SubType>
@@ -188,6 +188,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="OverviewWindow.resx">
+      <DependentUpon>OverviewWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="BumerangVsto_1_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -196,6 +199,12 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="OverviewWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OverviewWindow.Designer.cs">
+      <DependentUpon>OverviewWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>

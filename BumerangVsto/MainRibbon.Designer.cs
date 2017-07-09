@@ -36,9 +36,11 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.bumerangVstoGroup = this.Factory.CreateRibbonGroup();
-            this.byrToBynBut = this.Factory.CreateRibbonButton();
-            this.bynToByrBut = this.Factory.CreateRibbonButton();
-            this.createTagsBut = this.Factory.CreateRibbonButton();
+            this.TagsLayoutGallery = this.Factory.CreateRibbonGallery();
+            this.template2button = this.Factory.CreateRibbonButton();
+            this.template3button = this.Factory.CreateRibbonButton();
+            this.template5button = this.Factory.CreateRibbonButton();
+            this.overviewButton = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.bumerangVstoGroup.SuspendLayout();
             this.SuspendLayout();
@@ -52,31 +54,40 @@
             // 
             // bumerangVstoGroup
             // 
-            this.bumerangVstoGroup.Items.Add(this.byrToBynBut);
-            this.bumerangVstoGroup.Items.Add(this.bynToByrBut);
-            this.bumerangVstoGroup.Items.Add(this.createTagsBut);
+            this.bumerangVstoGroup.Items.Add(this.TagsLayoutGallery);
+            this.bumerangVstoGroup.Items.Add(this.overviewButton);
             this.bumerangVstoGroup.Label = "Bumerang VSTO";
             this.bumerangVstoGroup.Name = "bumerangVstoGroup";
             // 
-            // byrToBynBut
+            // TagsLayoutGallery
             // 
-            this.byrToBynBut.Label = "BYR -> BYN";
-            this.byrToBynBut.Name = "byrToBynBut";
-            this.byrToBynBut.ShowImage = true;
-            this.byrToBynBut.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.byrToBynBut_Click);
+            this.TagsLayoutGallery.Buttons.Add(this.template2button);
+            this.TagsLayoutGallery.Buttons.Add(this.template3button);
+            this.TagsLayoutGallery.Buttons.Add(this.template5button);
+            this.TagsLayoutGallery.Label = "Добавить ценники";
+            this.TagsLayoutGallery.Name = "TagsLayoutGallery";
             // 
-            // bynToByrBut
+            // template2button
             // 
-            this.bynToByrBut.Label = "BYN -> BYR";
-            this.bynToByrBut.Name = "bynToByrBut";
-            this.bynToByrBut.ShowImage = true;
-            this.bynToByrBut.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.bynToByrBut_Click);
+            this.template2button.Label = "по 2 в строке";
+            this.template2button.Name = "template2button";
+            this.template2button.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CreateTagsTemplate5Button_Click);
             // 
-            // createTagsBut
+            // template3button
             // 
-            this.createTagsBut.Label = "Сформировать ценники";
-            this.createTagsBut.Name = "createTagsBut";
-            this.createTagsBut.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.createTagsBut_Click);
+            this.template3button.Label = "по 3 в строке";
+            this.template3button.Name = "template3button";
+            // 
+            // template5button
+            // 
+            this.template5button.Label = "по 5 в строке";
+            this.template5button.Name = "template5button";
+            // 
+            // overviewButton
+            // 
+            this.overviewButton.Label = "Просмотр набора ценников";
+            this.overviewButton.Name = "overviewButton";
+            this.overviewButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.OverviewButton_Click);
             // 
             // MainRibbon
             // 
@@ -96,9 +107,11 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup bumerangVstoGroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton createTagsBut;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton byrToBynBut;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton bynToByrBut;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGallery TagsLayoutGallery;
+        private Microsoft.Office.Tools.Ribbon.RibbonButton template2button;
+        private Microsoft.Office.Tools.Ribbon.RibbonButton template3button;
+        private Microsoft.Office.Tools.Ribbon.RibbonButton template5button;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton overviewButton;
     }
 
     partial class ThisRibbonCollection

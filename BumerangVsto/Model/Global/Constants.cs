@@ -11,6 +11,6 @@ namespace BumerangVsto.Model.Global
     {
         public const string BynRegexPattern = @"^\d+((\.|,)\d+)?$";
 
-        public const string PathToTemplates = @"C:\BumerangVstoTemplates\Templates.xlsx";
+        public const string PathToTemplates = @"C:\BumerangVstoTemplates\Templates.xls";
     }
 }

@@ -10,6 +10,14 @@ namespace BumerangVsto
     {
         public event Action CreateTagsButClicked;
 
+        public event Action CreateTagsTemplate2ButClicked;
+
+        public event Action CreateTagsTemplate3ButClicked;
+
+        public event Action CreateTagsTemplate5ButClicked;
+
+        public event Action OverviewButClicked;
+
         public event Action ByrToBynButClicked;
 
         public event Action BynToByrButClicked;
@@ -19,19 +27,29 @@ namespace BumerangVsto
         }
 
 
-        private void createTagsBut_Click(object sender, RibbonControlEventArgs e)
+        private void CreateTagsBut_Click(object sender, RibbonControlEventArgs e)
         {
             CreateTagsButClicked?.Invoke();
         }
 
-        private void byrToBynBut_Click(object sender, RibbonControlEventArgs e)
+        private void CreateTagsTemplate2Button_Click(object sender, RibbonControlEventArgs e)
         {
-            ByrToBynButClicked?.Invoke();
+            CreateTagsTemplate2ButClicked?.Invoke();
         }
 
-        private void bynToByrBut_Click(object sender, RibbonControlEventArgs e)
+        private void CreateTagsTemplate3Button_Click(object sender, RibbonControlEventArgs e)
         {
-            BynToByrButClicked?.Invoke();
+            CreateTagsTemplate3ButClicked?.Invoke();
+        }
+
+        private void CreateTagsTemplate5Button_Click(object sender, RibbonControlEventArgs e)
+        {
+            CreateTagsTemplate5ButClicked?.Invoke();
+        }
+
+        private void OverviewButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            OverviewButClicked?.Invoke();
         }
     }
 }

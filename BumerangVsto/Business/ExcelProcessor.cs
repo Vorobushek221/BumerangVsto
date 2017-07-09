@@ -1,4 +1,5 @@
-﻿using BumerangVsto.Extensions;
+﻿using BumerangVsto.Business.Model;
+using BumerangVsto.Extensions;
 using BumerangVsto.Model;
 using BumerangVsto.Model.Global;
 using BumerangVsto.Model.Money;
@@ -211,13 +212,13 @@ namespace BumerangVsto.Business
                 string name = activeWorksheet.GetValue(locationLetter.ToString() + locationNumber.ToString());
                 if (!(string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name)))
                 {
-                    product.Name = name;
+                    product.Description = name;
                     Logger.AddInfo("Наименование товара " + productNumber + " успешно распознано!");
 
                 }
                 else
                 {
-                    product.Name = null;
+                    product.Description = null;
                     Logger.AddError("Наименование товара " + productNumber + " не найдено!");
                 }
                 #endregion
@@ -431,7 +432,7 @@ namespace BumerangVsto.Business
         private Excel.Workbook OpenTemplatesFile(string path)
         {
             var workbook = excelApp.Workbooks.Open(path);
-            excelApp.Workbooks["Templates"].Windows[1].Visible = true;
+            excelApp.Workbooks["Templates"].Windows[1].Visible = false;
             return workbook;
         }
 
@@ -441,7 +442,8 @@ namespace BumerangVsto.Business
 
             Excel.Worksheet templateWorksheet = templatesWorkbook.Worksheets[templateType.ToString()];
 
-            templateWorksheet.Copy(After: (Excel.Worksheet)excelApp.Workbooks[1].Worksheets[1]); // to the end  better
+            var worksheetsCount = excelApp.Workbooks[1].Worksheets.Count;
+            templateWorksheet.Copy(After: (Excel.Worksheet)excelApp.Workbooks[1].Worksheets[worksheetsCount]); 
 
             templatesWorkbook.Close(SaveChanges: false);
         }

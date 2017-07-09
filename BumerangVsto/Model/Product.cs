@@ -22,7 +22,7 @@ namespace BumerangVsto.Model
         /// <summary>
         /// Наименование товара
         /// </summary>
-        public string Name { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Единица измерения

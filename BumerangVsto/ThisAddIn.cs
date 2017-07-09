@@ -32,6 +32,7 @@ namespace BumerangVsto
             ribbon.ByrToBynButClicked += ConvertByrToByn;
             ribbon.BynToByrButClicked += ConvertBynToByr;
             ribbon.CreateTagsButClicked += ParseRegisterInfo;
+            ribbon.OverviewButClicked += OpenOverviewWindow;
 
             return Globals.Factory.GetRibbonFactory().CreateRibbonManager(new IRibbonExtension[] { ribbon });
         }
@@ -49,6 +50,11 @@ namespace BumerangVsto
         private void ParseRegisterInfo()
         {
             excelProcessor.DoSomeWork();
+        }
+
+        private void OpenOverviewWindow()
+        {
+            new OverviewWindow().ShowDialog();
         }
 
 
