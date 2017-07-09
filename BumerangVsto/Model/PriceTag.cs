@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BumerangVsto.Business.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,46 +19,21 @@ namespace BumerangVsto.Model
 
         public string Date { get; set; }
 
+        public TemplateType TemplateType { get; set; }
+
         public PriceTag()
         {
-            Description = string.Empty;
-            Price = string.Empty;
-            Provider = string.Empty;
-            Number = string.Empty;
-            Date = string.Empty;
+
         }
 
-        public PriceTag(string description, string price, string provider, string number, string date)
+        public PriceTag(string description, string price, string provider, string number, string date, TemplateType templateType)
         {
-            Description = description;
-            Price = price;
-            Provider = provider;
-            Number = number;
-            Date = date;
-        }
-
-        public static bool operator ==(PriceTag left, PriceTag right)
-        {
-            if (left.Description == right.Description &&
-                left.Price == right.Price &&
-                left.Provider == right.Provider &&
-                left.Number == right.Number &&
-                left.Date == right.Date)
-                return true;
-            else
-                return false;
-        }
-
-        public static bool operator !=(PriceTag left, PriceTag right)
-        {
-            if (left.Description != right.Description &&
-                left.Price != right.Price &&
-                left.Provider != right.Provider &&
-                left.Number != right.Number &&
-                left.Date != right.Date)
-                return true;
-            else
-                return false;
+            this.Description = description;
+            this.Price = price;
+            this.Provider = provider;
+            this.Number = number;
+            this.Date = date;
+            this.TemplateType = templateType;
         }
 
     }

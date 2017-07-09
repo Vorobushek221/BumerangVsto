@@ -6,14 +6,48 @@ using System.Threading.Tasks;
 
 namespace BumerangVsto.Model
 {
-    public class PriceTagList // мб лучше подумать про расширение класса List
+    public class PriceTagCollection
     {
         public List<PriceTag> List { get; private set; }
 
-        public PriceTagList()
+        public PriceTagCollection()
         {
             List = new List<PriceTag>();
         }
 
+        public int Length
+        {
+            get
+            {
+                return List.Count;
+            }
+        }
+
+        public PriceTag this[int i]
+        {
+            get
+            {
+                return List[i];
+            }
+            set
+            {
+                this.List[i] = value;
+            }
+        }
+
+        public void Remove(PriceTag tag)
+        {
+            this.List.Remove(tag);
+        }
+
+        public void Remove(int i)
+        {
+            Remove(this[i]);
+        }
+
+        public void Add(PriceTag tag)
+        {
+            this.List.Add(tag);
+        }
     }
 }
