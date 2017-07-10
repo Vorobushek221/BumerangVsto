@@ -8,8 +8,8 @@ namespace BumerangVsto.Business.Model
 {
     public enum TemplateType
     {
-        Tags2,
-        Tags3,
-        Tags5
+        Template2,
+        Template3,
+        Template5
     }
 }

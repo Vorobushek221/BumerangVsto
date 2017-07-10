@@ -20,6 +20,8 @@ namespace BumerangVsto.Business
     {
         private Excel.Application excelApp;
 
+        private PriceTagCollection tagCollection;
+
         public ExcelProcessor(Excel.Application app)
         {
             excelApp = app;
@@ -420,13 +422,12 @@ namespace BumerangVsto.Business
             }
             #endregion
 
-
             return register;
         }
 
         public void DoSomeWork()
         {
-            AddTemplateWorksheet(TemplateType.Tags3);
+            AddTemplateWorksheet(TemplateType.Template3);
         }
 
         private Excel.Workbook OpenTemplatesFile(string path)
@@ -446,6 +447,28 @@ namespace BumerangVsto.Business
             templateWorksheet.Copy(After: (Excel.Worksheet)excelApp.Workbooks[1].Worksheets[worksheetsCount]); 
 
             templatesWorkbook.Close(SaveChanges: false);
+        }
+
+        private void AddPriceTagsToList(Excel.Worksheet activeWorksheet, TemplateType templateType)
+        {
+            var register = ParseRegisterData(activeWorksheet);
+            tagCollection = new PriceTagCollection();
+            register.Products.ForEach(product => tagCollection.Add(new PriceTag(product, templateType)));
+        }
+
+        public void AddPriceTagsToListTemplate2(Excel.Worksheet activeWorksheet)
+        {
+            AddPriceTagsToList(activeWorksheet, TemplateType.Template2);
+        }
+
+        public void AddPriceTagsToListTemplate3(Excel.Worksheet activeWorksheet)
+        {
+            AddPriceTagsToList(activeWorksheet, TemplateType.Template3);
+        }
+
+        public void AddPriceTagsToListTemplate5(Excel.Worksheet activeWorksheet)
+        {
+            AddPriceTagsToList(activeWorksheet, TemplateType.Template5);
         }
 
     }

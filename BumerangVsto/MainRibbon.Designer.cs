@@ -36,7 +36,7 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.bumerangVstoGroup = this.Factory.CreateRibbonGroup();
-            this.TagsLayoutGallery = this.Factory.CreateRibbonGallery();
+            this.tagsLayoutGallery = this.Factory.CreateRibbonGallery();
             this.template2button = this.Factory.CreateRibbonButton();
             this.template3button = this.Factory.CreateRibbonButton();
             this.template5button = this.Factory.CreateRibbonButton();
@@ -54,34 +54,36 @@
             // 
             // bumerangVstoGroup
             // 
-            this.bumerangVstoGroup.Items.Add(this.TagsLayoutGallery);
+            this.bumerangVstoGroup.Items.Add(this.tagsLayoutGallery);
             this.bumerangVstoGroup.Items.Add(this.overviewButton);
             this.bumerangVstoGroup.Label = "Bumerang VSTO";
             this.bumerangVstoGroup.Name = "bumerangVstoGroup";
             // 
-            // TagsLayoutGallery
+            // tagsLayoutGallery
             // 
-            this.TagsLayoutGallery.Buttons.Add(this.template2button);
-            this.TagsLayoutGallery.Buttons.Add(this.template3button);
-            this.TagsLayoutGallery.Buttons.Add(this.template5button);
-            this.TagsLayoutGallery.Label = "Добавить ценники";
-            this.TagsLayoutGallery.Name = "TagsLayoutGallery";
+            this.tagsLayoutGallery.Buttons.Add(this.template2button);
+            this.tagsLayoutGallery.Buttons.Add(this.template3button);
+            this.tagsLayoutGallery.Buttons.Add(this.template5button);
+            this.tagsLayoutGallery.Label = "Добавить ценники";
+            this.tagsLayoutGallery.Name = "tagsLayoutGallery";
             // 
             // template2button
             // 
             this.template2button.Label = "по 2 в строке";
             this.template2button.Name = "template2button";
-            this.template2button.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CreateTagsTemplate5Button_Click);
+            this.template2button.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CreateTagsTemplate2Button_Click);
             // 
             // template3button
             // 
             this.template3button.Label = "по 3 в строке";
             this.template3button.Name = "template3button";
+            this.template3button.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CreateTagsTemplate3Button_Click);
             // 
             // template5button
             // 
             this.template5button.Label = "по 5 в строке";
             this.template5button.Name = "template5button";
+            this.template5button.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.CreateTagsTemplate5Button_Click);
             // 
             // overviewButton
             // 
@@ -107,7 +109,7 @@
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup bumerangVstoGroup;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGallery TagsLayoutGallery;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGallery tagsLayoutGallery;
         private Microsoft.Office.Tools.Ribbon.RibbonButton template2button;
         private Microsoft.Office.Tools.Ribbon.RibbonButton template3button;
         private Microsoft.Office.Tools.Ribbon.RibbonButton template5button;

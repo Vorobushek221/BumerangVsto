@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PriceTagViewList = new System.Windows.Forms.ListView();
+            this.priceTagViewList = new System.Windows.Forms.ListView();
             this.indexHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.descriptionHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.providerHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -37,22 +37,22 @@
             this.typeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // PriceTagViewList
+            // priceTagViewList
             // 
-            this.PriceTagViewList.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.PriceTagViewList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.priceTagViewList.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.priceTagViewList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.indexHeader,
             this.descriptionHeader,
             this.providerHeader,
             this.numberHeader,
             this.dateHeader,
             this.typeHeader});
-            this.PriceTagViewList.Location = new System.Drawing.Point(12, 12);
-            this.PriceTagViewList.Name = "PriceTagViewList";
-            this.PriceTagViewList.Size = new System.Drawing.Size(1250, 622);
-            this.PriceTagViewList.TabIndex = 0;
-            this.PriceTagViewList.UseCompatibleStateImageBehavior = false;
-            this.PriceTagViewList.View = System.Windows.Forms.View.Details;
+            this.priceTagViewList.Location = new System.Drawing.Point(12, 12);
+            this.priceTagViewList.Name = "priceTagViewList";
+            this.priceTagViewList.Size = new System.Drawing.Size(1250, 622);
+            this.priceTagViewList.TabIndex = 0;
+            this.priceTagViewList.UseCompatibleStateImageBehavior = false;
+            this.priceTagViewList.View = System.Windows.Forms.View.Details;
             // 
             // indexHeader
             // 
@@ -85,7 +85,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1275, 646);
-            this.Controls.Add(this.PriceTagViewList);
+            this.Controls.Add(this.priceTagViewList);
             this.Name = "OverviewWindow";
             this.Text = "TagsCreateWindow";
             this.ResumeLayout(false);
@@ -94,7 +94,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView PriceTagViewList;
+        private System.Windows.Forms.ListView priceTagViewList;
         private System.Windows.Forms.ColumnHeader indexHeader;
         private System.Windows.Forms.ColumnHeader descriptionHeader;
         private System.Windows.Forms.ColumnHeader providerHeader;

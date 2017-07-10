@@ -170,7 +170,7 @@
     <Compile Include="Model\Money\Byn.cs" />
     <Compile Include="Model\Money\BynStringFormat.cs" />
     <Compile Include="Model\PriceTag.cs" />
-    <Compile Include="Model\PriceTagList.cs" />
+    <Compile Include="Model\PriceTagCollection.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

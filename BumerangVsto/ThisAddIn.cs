@@ -29,32 +29,32 @@ namespace BumerangVsto
         protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
             var ribbon = new MainRibbon();
-            ribbon.ByrToBynButClicked += ConvertByrToByn;
-            ribbon.BynToByrButClicked += ConvertBynToByr;
-            ribbon.CreateTagsButClicked += ParseRegisterInfo;
+            ribbon.CreateTagsTemplate2ButClicked += AddTagsTemplate2;
+            ribbon.CreateTagsTemplate3ButClicked += AddTagsTemplate3;
+            ribbon.CreateTagsTemplate5ButClicked += AddTagsTemplate5;
             ribbon.OverviewButClicked += OpenOverviewWindow;
 
             return Globals.Factory.GetRibbonFactory().CreateRibbonManager(new IRibbonExtension[] { ribbon });
         }
 
-        private void ConvertByrToByn()
+        private void AddTagsTemplate2()
         {
-            excelProcessor.ConvertByrToByn(Globals.ThisAddIn.Application.Selection);
+            excelProcessor.AddPriceTagsToListTemplate2(Globals.ThisAddIn.Application.ActiveSheet);
         }
 
-        private void ConvertBynToByr()
+        private void AddTagsTemplate3()
         {
-            excelProcessor.ConvertBynToByr(Globals.ThisAddIn.Application.Selection);
+            excelProcessor.AddPriceTagsToListTemplate3(Globals.ThisAddIn.Application.ActiveSheet);
         }
 
-        private void ParseRegisterInfo()
+        private void AddTagsTemplate5()
         {
-            excelProcessor.DoSomeWork();
+            excelProcessor.AddPriceTagsToListTemplate5(Globals.ThisAddIn.Application.ActiveSheet);
         }
 
         private void OpenOverviewWindow()
         {
-            new OverviewWindow().ShowDialog();
+            //new OverviewWindow().ShowDialog();
         }
 
 

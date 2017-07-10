@@ -7,9 +7,7 @@ using Microsoft.Office.Tools.Ribbon;
 namespace BumerangVsto
 {
     public partial class MainRibbon
-    {
-        public event Action CreateTagsButClicked;
-
+    { 
         public event Action CreateTagsTemplate2ButClicked;
 
         public event Action CreateTagsTemplate3ButClicked;
@@ -18,19 +16,10 @@ namespace BumerangVsto
 
         public event Action OverviewButClicked;
 
-        public event Action ByrToBynButClicked;
-
-        public event Action BynToByrButClicked;
-
         private void MainRibbon_Load(object sender, RibbonUIEventArgs e)
         {
         }
 
-
-        private void CreateTagsBut_Click(object sender, RibbonControlEventArgs e)
-        {
-            CreateTagsButClicked?.Invoke();
-        }
 
         private void CreateTagsTemplate2Button_Click(object sender, RibbonControlEventArgs e)
         {
