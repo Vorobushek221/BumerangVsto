@@ -1,4 +1,5 @@
 ﻿using BumerangVsto.Business.Model;
+using BumerangVsto.Model.Global;
 using BumerangVsto.Model.Money;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace BumerangVsto.Model
 {
     public class PriceTag
     {
+        public int Id { get; set; }
+
         public string Description { get; set; }
 
         public string Price { get; set; }
@@ -43,7 +46,7 @@ namespace BumerangVsto.Model
             this.Price = product.ResultPriceRounded.ToString();
             this.Provider = product.ProducerCountry;
             this.Number = product.ConsignmentNoteNumber;
-            this.Date = product.GettingDate.ToString();
+            this.Date = (product.GettingDate != null) ? product.GettingDate.Value.ToString(Constants.DateFormat) : default(string);
         }
 
         public PriceTag(Product product, TemplateType templateType)

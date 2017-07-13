@@ -41,6 +41,7 @@
             this.template3button = this.Factory.CreateRibbonButton();
             this.template5button = this.Factory.CreateRibbonButton();
             this.overviewButton = this.Factory.CreateRibbonButton();
+            this.addTagSheets = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.bumerangVstoGroup.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +57,7 @@
             // 
             this.bumerangVstoGroup.Items.Add(this.tagsLayoutGallery);
             this.bumerangVstoGroup.Items.Add(this.overviewButton);
+            this.bumerangVstoGroup.Items.Add(this.addTagSheets);
             this.bumerangVstoGroup.Label = "Bumerang VSTO";
             this.bumerangVstoGroup.Name = "bumerangVstoGroup";
             // 
@@ -64,7 +66,7 @@
             this.tagsLayoutGallery.Buttons.Add(this.template2button);
             this.tagsLayoutGallery.Buttons.Add(this.template3button);
             this.tagsLayoutGallery.Buttons.Add(this.template5button);
-            this.tagsLayoutGallery.Label = "Добавить ценники";
+            this.tagsLayoutGallery.Label = "Добавить ценники из реестра";
             this.tagsLayoutGallery.Name = "tagsLayoutGallery";
             // 
             // template2button
@@ -91,6 +93,12 @@
             this.overviewButton.Name = "overviewButton";
             this.overviewButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.OverviewButton_Click);
             // 
+            // addTagSheets
+            // 
+            this.addTagSheets.Label = "Сформировать листы ценников";
+            this.addTagSheets.Name = "addTagSheets";
+            this.addTagSheets.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AddTagSheets_Click);
+            // 
             // MainRibbon
             // 
             this.Name = "MainRibbon";
@@ -114,6 +122,7 @@
         private Microsoft.Office.Tools.Ribbon.RibbonButton template3button;
         private Microsoft.Office.Tools.Ribbon.RibbonButton template5button;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton overviewButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton addTagSheets;
     }
 
     partial class ThisRibbonCollection

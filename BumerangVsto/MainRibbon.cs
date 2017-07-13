@@ -16,6 +16,8 @@ namespace BumerangVsto
 
         public event Action OverviewButClicked;
 
+        public event Action AddTagSheetsButtonClicked;
+
         private void MainRibbon_Load(object sender, RibbonUIEventArgs e)
         {
         }
@@ -39,6 +41,11 @@ namespace BumerangVsto
         private void OverviewButton_Click(object sender, RibbonControlEventArgs e)
         {
             OverviewButClicked?.Invoke();
+        }
+
+        private void AddTagSheets_Click(object sender, RibbonControlEventArgs e)
+        {
+            AddTagSheetsButtonClicked?.Invoke();
         }
     }
 }

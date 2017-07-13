@@ -11,6 +11,8 @@ namespace BumerangVsto.Model.Global
     {
         public const string BynRegexPattern = @"^\d+((\.|,)\d+)?$";
 
+        public const string DateFormat = "dd.MM.yyyy";
+
         public const string PathToTemplates = @"C:\BumerangVstoTemplates\Templates.xls";
     }
 }

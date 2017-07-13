@@ -20,7 +20,7 @@ namespace BumerangVsto.Business
     {
         private Excel.Application excelApp;
 
-        private PriceTagCollection tagCollection;
+        public PriceTagCollection PriceTagCollection { get; set; }
 
         public ExcelProcessor(Excel.Application app)
         {
@@ -452,8 +452,8 @@ namespace BumerangVsto.Business
         private void AddPriceTagsToList(Excel.Worksheet activeWorksheet, TemplateType templateType)
         {
             var register = ParseRegisterData(activeWorksheet);
-            tagCollection = new PriceTagCollection();
-            register.Products.ForEach(product => tagCollection.Add(new PriceTag(product, templateType)));
+            PriceTagCollection = new PriceTagCollection();
+            register.Products.ForEach(product => PriceTagCollection.Add(new PriceTag(product, templateType)));
         }
 
         public void AddPriceTagsToListTemplate2(Excel.Worksheet activeWorksheet)

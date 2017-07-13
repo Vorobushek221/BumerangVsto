@@ -7,24 +7,41 @@ using System.Threading.Tasks;
 
 namespace BumerangVsto.Model
 {
-    public class PriceTagCollection : IEnumerable<PriceTag>
+    public class PriceTagCollection : IEnumerable<PriceTag>, IEnumerator<PriceTag>
     {
         public List<PriceTag> List { get; private set; }
+
+        private int position;
+
+        public PriceTag Current
+        {
+            get
+            {
+                return List[position];
+            }
+        }
+
+        object IEnumerator.Current
+        {
+            get
+            {
+                return Current;
+            }
+        }
 
         public PriceTagCollection()
         {
             List = new List<PriceTag>();
+            position = -1;
         }
 
-        public int Length
+        public int Count
         {
             get
             {
                 return List.Count;
             }
         }
-
-        public object Current => throw new NotImplementedException();
 
         public PriceTag this[int i]
         {
@@ -50,17 +67,38 @@ namespace BumerangVsto.Model
 
         public void Add(PriceTag tag)
         {
+            tag.Id = this.Count;
             this.List.Add(tag);
         }
 
-        public IEnumerator<PriceTag> GetEnumerator()
+        public bool MoveNext()
         {
-            return this.List.GetEnumerator();
+            if(position < List.Count -1)
+            {
+                position++;
+                return true;
+            }
+            ((IEnumerator)this).Reset();
+            return false;
+        }
+
+        public void Reset()
+        {
+            position = -1;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.List.GetEnumerator();
+            return (IEnumerator)this;
+        }
+
+        public IEnumerator<PriceTag> GetEnumerator()
+        {
+            return (IEnumerator<PriceTag>)this;
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

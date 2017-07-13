@@ -54,7 +54,7 @@ namespace BumerangVsto
 
         private void OpenOverviewWindow()
         {
-            //new OverviewWindow().ShowDialog();
+            new OverviewWindow(excelProcessor.PriceTagCollection).ShowDialog();
         }
 
 
