@@ -1,4 +1,5 @@
-﻿using BumerangVsto.Model;
+﻿using BumerangVsto.Extensions;
+using BumerangVsto.Model;
 using BumerangVsto.Model.Global;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,7 @@ namespace BumerangVsto
                 item.SubItems.Add(tag.Provider);
                 item.SubItems.Add(tag.Number);
                 item.SubItems.Add(tag.Date);
-                item.SubItems.Add(tag.TemplateType.ToString());
+                item.SubItems.Add(tag.TemplateType.GetDescription());
                 priceTagViewList.Items.Add(item);
             }
 

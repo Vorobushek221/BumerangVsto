@@ -158,6 +158,7 @@
   <ItemGroup>
     <Compile Include="Business\CurrencyConverter.cs" />
     <Compile Include="Business\ExcelProcessor.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Model\TemplateType.cs" />
     <Compile Include="Extensions\WorksheetExtension.cs" />
     <Compile Include="MainRibbon.cs">

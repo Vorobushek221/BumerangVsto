@@ -12,7 +12,7 @@ namespace BumerangVsto.Business.Model
         [Description("")]
         None,
 
-        [Description("по 2 в строке")]
+        //[Description("по 2 в строке")]
         Template2,
 
         [Description("по 3 в строке")]

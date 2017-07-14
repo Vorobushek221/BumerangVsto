@@ -40,7 +40,7 @@ namespace BumerangVsto
             templateComboBox.SelectedValue = priceTag.TemplateType;
         }
 
-        private void SetUpTemplateCombobox(Type type)
+        private void SetUpTemplateCombobox(Type type) // refactor this later
         {
             templateComboBox.DisplayMember = "Description";
             templateComboBox.ValueMember = "Value";
