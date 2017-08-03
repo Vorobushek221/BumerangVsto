@@ -32,6 +32,7 @@ namespace BumerangVsto
             ribbon.CreateTagsTemplate2ButClicked += AddTagsTemplate2;
             ribbon.CreateTagsTemplate3ButClicked += AddTagsTemplate3;
             ribbon.CreateTagsTemplate5ButClicked += AddTagsTemplate5;
+            ribbon.AddTagSheetsButtonClicked += AddTagSheets;
             ribbon.OverviewButClicked += OpenOverviewWindow;
 
             return Globals.Factory.GetRibbonFactory().CreateRibbonManager(new IRibbonExtension[] { ribbon });
@@ -55,6 +56,11 @@ namespace BumerangVsto
         private void OpenOverviewWindow()
         {
             new OverviewWindow(excelProcessor.PriceTagCollection).ShowDialog();
+        }
+
+        private void AddTagSheets()
+        {
+            excelProcessor.AddTagsSheets();
         }
 
 

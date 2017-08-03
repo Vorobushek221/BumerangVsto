@@ -42,6 +42,7 @@ namespace BumerangVsto
                 };
                 item.Text = (tag.Id + 1).ToString();
                 item.SubItems.Add(tag.Description);
+                item.SubItems.Add(tag.Price);
                 item.SubItems.Add(tag.Provider);
                 item.SubItems.Add(tag.Number);
                 item.SubItems.Add(tag.Date);
@@ -68,7 +69,7 @@ namespace BumerangVsto
                 {
                     var item = priceTagViewList.SelectedItems[0].Tag as PriceTag;
                     var priceTagWindow = new PriceTagWindow(item);
-                    priceTagWindow.OnTagChange += InitPriceTagViewList;
+                    priceTagWindow.OnSaveClick += InitPriceTagViewList;
                     priceTagWindow.Show();
                 }
             }

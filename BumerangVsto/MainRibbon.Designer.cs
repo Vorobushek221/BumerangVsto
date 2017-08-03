@@ -35,7 +35,7 @@
         private void InitializeComponent()
         {
             this.tab1 = this.Factory.CreateRibbonTab();
-            this.bumerangVstoGroup = this.Factory.CreateRibbonGroup();
+            this.priceTagGroup = this.Factory.CreateRibbonGroup();
             this.tagsLayoutGallery = this.Factory.CreateRibbonGallery();
             this.template2button = this.Factory.CreateRibbonButton();
             this.template3button = this.Factory.CreateRibbonButton();
@@ -43,23 +43,23 @@
             this.overviewButton = this.Factory.CreateRibbonButton();
             this.addTagSheets = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
-            this.bumerangVstoGroup.SuspendLayout();
+            this.priceTagGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
             // 
             this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
-            this.tab1.Groups.Add(this.bumerangVstoGroup);
+            this.tab1.Groups.Add(this.priceTagGroup);
             this.tab1.Label = "TabAddIns";
             this.tab1.Name = "tab1";
             // 
-            // bumerangVstoGroup
+            // priceTagGroup
             // 
-            this.bumerangVstoGroup.Items.Add(this.tagsLayoutGallery);
-            this.bumerangVstoGroup.Items.Add(this.overviewButton);
-            this.bumerangVstoGroup.Items.Add(this.addTagSheets);
-            this.bumerangVstoGroup.Label = "Bumerang VSTO";
-            this.bumerangVstoGroup.Name = "bumerangVstoGroup";
+            this.priceTagGroup.Items.Add(this.tagsLayoutGallery);
+            this.priceTagGroup.Items.Add(this.overviewButton);
+            this.priceTagGroup.Items.Add(this.addTagSheets);
+            this.priceTagGroup.Label = "Работа с ценниками";
+            this.priceTagGroup.Name = "priceTagGroup";
             // 
             // tagsLayoutGallery
             // 
@@ -107,8 +107,8 @@
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.MainRibbon_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
-            this.bumerangVstoGroup.ResumeLayout(false);
-            this.bumerangVstoGroup.PerformLayout();
+            this.priceTagGroup.ResumeLayout(false);
+            this.priceTagGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -116,7 +116,7 @@
         #endregion
 
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup bumerangVstoGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup priceTagGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonGallery tagsLayoutGallery;
         private Microsoft.Office.Tools.Ribbon.RibbonButton template2button;
         private Microsoft.Office.Tools.Ribbon.RibbonButton template3button;

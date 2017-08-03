@@ -18,7 +18,7 @@ namespace BumerangVsto.Business
 {
     public class ExcelProcessor
     {
-        private Excel.Application excelApp;
+        private Excel.Application excelApp; // TODO попробовать достучаться к открытым документам через это свойсво
 
         public PriceTagCollection PriceTagCollection { get; set; }
 
@@ -427,7 +427,7 @@ namespace BumerangVsto.Business
 
         public void DoSomeWork()
         {
-            AddTemplateWorksheet(TemplateType.Template3);
+            AddTemplateWorksheet(TagsTemplateType.Tags3);
         }
 
         private Excel.Workbook OpenTemplatesFile(string path)
@@ -437,19 +437,7 @@ namespace BumerangVsto.Business
             return workbook;
         }
 
-        private void AddTemplateWorksheet(TemplateType templateType)
-        {
-            Excel.Workbook templatesWorkbook = OpenTemplatesFile(Constants.PathToTemplates);
-
-            Excel.Worksheet templateWorksheet = templatesWorkbook.Worksheets[templateType.ToString()];
-
-            var worksheetsCount = excelApp.Workbooks[1].Worksheets.Count;
-            templateWorksheet.Copy(After: (Excel.Worksheet)excelApp.Workbooks[1].Worksheets[worksheetsCount]); 
-
-            templatesWorkbook.Close(SaveChanges: false);
-        }
-
-        private void AddPriceTagsToList(Excel.Worksheet activeWorksheet, TemplateType templateType)
+        private void AddPriceTagsToList(Excel.Worksheet activeWorksheet, TagsTemplateType templateType)
         {
             var register = ParseRegisterData(activeWorksheet);
             PriceTagCollection = new PriceTagCollection();
@@ -458,18 +446,111 @@ namespace BumerangVsto.Business
 
         public void AddPriceTagsToListTemplate2(Excel.Worksheet activeWorksheet)
         {
-            AddPriceTagsToList(activeWorksheet, TemplateType.Template2);
+            AddPriceTagsToList(activeWorksheet, TagsTemplateType.Tags2);
         }
 
         public void AddPriceTagsToListTemplate3(Excel.Worksheet activeWorksheet)
         {
-            AddPriceTagsToList(activeWorksheet, TemplateType.Template3);
+            AddPriceTagsToList(activeWorksheet, TagsTemplateType.Tags3);
         }
 
         public void AddPriceTagsToListTemplate5(Excel.Worksheet activeWorksheet)
         {
-            AddPriceTagsToList(activeWorksheet, TemplateType.Template5);
+            AddPriceTagsToList(activeWorksheet, TagsTemplateType.Tags5);
         }
 
+        private Excel.Worksheet AddTemplateWorksheet(TagsTemplateType templateType)
+        {
+            Excel.Workbook templatesWorkbook = OpenTemplatesFile(Constants.PathToTemplates);
+            Excel.Worksheet templateWorksheet = templatesWorkbook.Worksheets[templateType.ToString()];
+
+            var worksheetsCount = excelApp.Workbooks[1].Worksheets.Count;
+            templateWorksheet.Copy(After: (Excel.Worksheet)excelApp.Workbooks[1].Worksheets[worksheetsCount]);
+
+            templatesWorkbook.Close(SaveChanges: false);
+
+            return (Excel.Worksheet)excelApp.Workbooks[1].Worksheets[++worksheetsCount];
+        }
+
+        //private Excel.Worksheet AddTemplateWorksheetTemplate2()
+        //{
+        //    return AddTemplateWorksheet(TagsTemplateType.Tags2);
+        //}
+
+        //private Excel.Worksheet AddTemplateWorksheetTemplate3()
+        //{
+        //    return AddTemplateWorksheet(TagsTemplateType.Tags3);
+        //}
+
+        //private Excel.Worksheet AddTemplateWorksheetTemplate5()
+        //{
+        //    return AddTemplateWorksheet(TagsTemplateType.Tags5);
+        //}
+
+        public void AddTagsSheets()
+        {
+            if(PriceTagCollection.Count == 0)
+            {
+                return;
+            }
+            var tag3Collection = PriceTagCollection.Where(tag => tag.TemplateType == TagsTemplateType.Tags3);
+            if(tag3Collection.Count() > 0)
+            {
+                
+                FillSheetWithTags(TagsTemplateType.Tags3, tag3Collection);
+            }
+        }
+
+        public bool ReplaceTextInSheet(Excel.Worksheet activeWorksheet, string replace, string replacement)
+        {
+            foreach (Excel.Range cell in activeWorksheet.UsedRange.Cells)
+            {
+                if(cell.Value == replace)
+                {
+                    cell.Value = replacement;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        /// <returns>Count of added sheets.</returns>
+        private void FillSheetWithTags(TagsTemplateType templateType, IEnumerable<PriceTag> tagCollection)
+        {
+            if(tagCollection.Count() == 0)
+            {
+                return;
+            }
+
+            var docket = new Docket();
+            var tagSheet = AddTemplateWorksheet(templateType);
+            foreach(var tag in tagCollection)
+            {
+                bool success = ReplaceTextInSheet(tagSheet, docket.Description, tag.Description) &&
+                            ReplaceTextInSheet(tagSheet, docket.Price, tag.Price) &&
+                            ReplaceTextInSheet(tagSheet, docket.Provider, tag.Provider) &&
+                            ReplaceTextInSheet(tagSheet, docket.Number, tag.Number) &&
+                            ReplaceTextInSheet(tagSheet, docket.Date, tag.Date);
+                if(success)
+                {
+                    docket.DocketNumber++;
+                }
+                else
+                {
+                    tagSheet = AddTemplateWorksheet(templateType);
+                    docket.DocketNumber = 1;
+                }
+            }
+
+            while (ReplaceTextInSheet(tagSheet, docket.Description, String.Empty) &&
+                ReplaceTextInSheet(tagSheet, docket.Price, String.Empty) &&
+                ReplaceTextInSheet(tagSheet, docket.Provider, String.Empty) &&
+                ReplaceTextInSheet(tagSheet, docket.Number, String.Empty) &&
+                ReplaceTextInSheet(tagSheet, docket.Date, String.Empty))
+            {
+                docket.DocketNumber++;
+            }
+        }
     }
 }

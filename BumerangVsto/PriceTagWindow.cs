@@ -16,7 +16,7 @@ namespace BumerangVsto
     {
         private PriceTag priceTag;
 
-        public event Action OnTagChange;
+        public event Action OnSaveClick;
 
         public PriceTagWindow(PriceTag tag)
         {
@@ -24,10 +24,17 @@ namespace BumerangVsto
             if(tag != null)
             {
                 priceTag = tag;
-                SetUpTemplateCombobox(typeof(TemplateType));
+                SetUpTemplateCombobox(typeof(TagsTemplateType));
                 InitFields();
             }
-            
+        }
+
+        public PriceTagWindow() //для добавления
+        {
+            InitializeComponent();
+            priceTag = new PriceTag();
+            SetUpTemplateCombobox(typeof(TagsTemplateType));
+            InitFields();
         }
 
         private void InitFields()
@@ -62,8 +69,8 @@ namespace BumerangVsto
             priceTag.Provider = this.providerTextBox.Text;
             priceTag.Number = this.numberTextBox.Text;
             priceTag.Date = this.dateTextBox.Text;
-            priceTag.TemplateType  = (TemplateType)this.templateComboBox.SelectedValue;
-            OnTagChange?.Invoke();
+            priceTag.TemplateType  = (TagsTemplateType)this.templateComboBox.SelectedValue;
+            OnSaveClick?.Invoke();
             this.Close();
         }
     }

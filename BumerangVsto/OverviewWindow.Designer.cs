@@ -35,6 +35,7 @@
             this.numberHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.typeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.priceHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // priceTagViewList
@@ -46,6 +47,7 @@
             this.priceTagViewList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.indexHeader,
             this.descriptionHeader,
+            this.priceHeader,
             this.providerHeader,
             this.numberHeader,
             this.dateHeader,
@@ -85,6 +87,10 @@
             // 
             this.typeHeader.Text = "Тип";
             // 
+            // priceHeader
+            // 
+            this.priceHeader.Text = "Цена";
+            // 
             // OverviewWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -106,5 +112,6 @@
         private System.Windows.Forms.ColumnHeader numberHeader;
         private System.Windows.Forms.ColumnHeader dateHeader;
         private System.Windows.Forms.ColumnHeader typeHeader;
+        private System.Windows.Forms.ColumnHeader priceHeader;
     }
 }

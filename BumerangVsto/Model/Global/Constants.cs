@@ -13,6 +13,6 @@ namespace BumerangVsto.Model.Global
 
         public const string DateFormat = "dd.MM.yyyy";
 
-        public const string PathToTemplates = @"C:\BumerangVstoTemplates\Templates.xls";
+        public const string PathToTemplates = @"C:\BumerangVstoData\Templates\Templates.xls";
     }
 }

@@ -23,14 +23,14 @@ namespace BumerangVsto.Model
 
         public string Date { get; set; }
 
-        public TemplateType TemplateType { get; set; }
+        public TagsTemplateType TemplateType { get; set; }
 
         public PriceTag()
         {
 
         }
 
-        public PriceTag(string description, string price, string provider, string number, string date, TemplateType templateType)
+        public PriceTag(string description, string price, string provider, string number, string date, TagsTemplateType templateType)
         {
             this.Description = description;
             this.Price = price;
@@ -49,7 +49,7 @@ namespace BumerangVsto.Model
             this.Date = (product.GettingDate != null) ? product.GettingDate.Value.ToString(Constants.DateFormat) : default(string);
         }
 
-        public PriceTag(Product product, TemplateType templateType)
+        public PriceTag(Product product, TagsTemplateType templateType)
             : this(product)
         {
             this.TemplateType = templateType;
