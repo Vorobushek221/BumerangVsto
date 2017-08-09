@@ -36,7 +36,6 @@ namespace BumerangVsto.Model.Money
             }
         }
 
-
         private decimal sum;
 
         public static Byn GetInstance(string sumString)
@@ -78,24 +77,28 @@ namespace BumerangVsto.Model.Money
             sum = parsedSum;
         }
 
-        public string ToString(BynStringFormat format =  BynStringFormat.dot)
+        public string ToString(BynStringFormat format = BynStringFormat.dot)
         {
-            switch(format)
+            string rubbles = Rubbles.ToString();
+            string kopeck = (Kopeck.ToString().Length > 1) ? Kopeck.ToString() : (Kopeck.ToString() + "0");
+            switch (format)
             {
                 case BynStringFormat.dot:
-                    return Rubbles + "." + Kopeck;
+                    return rubbles + "." + kopeck;
 
                 case BynStringFormat.comma:
-                    return Rubbles + "," + Kopeck;
+                    return rubbles + "," + kopeck;
 
                 default:
-                    return Rubbles + "." + Kopeck;
+                    return rubbles + "." + kopeck;
             }
         }
 
         public override string ToString()
         {
-            return Rubbles + "." + Kopeck;
+            string rubbles = Rubbles.ToString();
+            string kopeck = (Kopeck.ToString().Length > 1) ? Kopeck.ToString() : (Kopeck.ToString() + "0");
+            return rubbles + "." + kopeck;
         }
 
     }

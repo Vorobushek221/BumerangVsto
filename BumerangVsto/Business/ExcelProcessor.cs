@@ -472,32 +472,28 @@ namespace BumerangVsto.Business
             return (Excel.Worksheet)excelApp.Workbooks[1].Worksheets[++worksheetsCount];
         }
 
-        //private Excel.Worksheet AddTemplateWorksheetTemplate2()
-        //{
-        //    return AddTemplateWorksheet(TagsTemplateType.Tags2);
-        //}
-
-        //private Excel.Worksheet AddTemplateWorksheetTemplate3()
-        //{
-        //    return AddTemplateWorksheet(TagsTemplateType.Tags3);
-        //}
-
-        //private Excel.Worksheet AddTemplateWorksheetTemplate5()
-        //{
-        //    return AddTemplateWorksheet(TagsTemplateType.Tags5);
-        //}
-
         public void AddTagsSheets()
         {
-            if(PriceTagCollection.Count == 0)
+            if (PriceTagCollection.Count == 0)
             {
                 return;
             }
-            var tag3Collection = PriceTagCollection.Where(tag => tag.TemplateType == TagsTemplateType.Tags3);
-            if(tag3Collection.Count() > 0)
+            var tag2Collection = PriceTagCollection.Where(tag => tag.TemplateType == TagsTemplateType.Tags2);
+            if (tag2Collection.Count() > 0)
             {
-                
+                FillSheetWithTags(TagsTemplateType.Tags2, tag2Collection);
+            }
+
+            var tag3Collection = PriceTagCollection.Where(tag => tag.TemplateType == TagsTemplateType.Tags3);
+            if (tag3Collection.Count() > 0)
+            {
                 FillSheetWithTags(TagsTemplateType.Tags3, tag3Collection);
+            }
+
+            var tag5Collection = PriceTagCollection.Where(tag => tag.TemplateType == TagsTemplateType.Tags5);
+            if (tag5Collection.Count() > 0)
+            {
+                FillSheetWithTags(TagsTemplateType.Tags5, tag5Collection);
             }
         }
 
@@ -505,7 +501,7 @@ namespace BumerangVsto.Business
         {
             foreach (Excel.Range cell in activeWorksheet.UsedRange.Cells)
             {
-                if(cell.Value == replace)
+                if (cell.Value?.ToString() == replace)
                 {
                     cell.Value = replacement;
                     return true;
@@ -514,25 +510,24 @@ namespace BumerangVsto.Business
             return false;
         }
 
-
         /// <returns>Count of added sheets.</returns>
         private void FillSheetWithTags(TagsTemplateType templateType, IEnumerable<PriceTag> tagCollection)
         {
-            if(tagCollection.Count() == 0)
+            if (tagCollection.Count() == 0)
             {
                 return;
             }
 
             var docket = new Docket();
             var tagSheet = AddTemplateWorksheet(templateType);
-            foreach(var tag in tagCollection)
+            foreach (var tag in tagCollection)
             {
                 bool success = ReplaceTextInSheet(tagSheet, docket.Description, tag.Description) &&
                             ReplaceTextInSheet(tagSheet, docket.Price, tag.Price) &&
                             ReplaceTextInSheet(tagSheet, docket.Provider, tag.Provider) &&
                             ReplaceTextInSheet(tagSheet, docket.Number, tag.Number) &&
                             ReplaceTextInSheet(tagSheet, docket.Date, tag.Date);
-                if(success)
+                if (success)
                 {
                     docket.DocketNumber++;
                 }
